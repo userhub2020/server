@@ -3,11 +3,11 @@ radio.onReceivedNumber(function (receivedNumber) {
         if (receivedNumber < 100) {
             if (list.indexOf(receivedNumber) < 0) {
                 list.unshift(receivedNumber)
+                led.plot((receivedNumber - 1) % 5, (receivedNumber - 1) / 5)
             }
         }
     }
     radio.sendNumber(receivedNumber)
-    led.plot((receivedNumber - 1) % 5, (receivedNumber - 1) / 5)
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 4; index++) {
