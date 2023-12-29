@@ -6,12 +6,14 @@ radio.onReceivedNumber(function (receivedNumber) {
         . . . . .
         . . . . .
         `)
-    radio.sendNumber(0)
-    if (receivedNumber < 100) {
-        if (list.indexOf(receivedNumber) < 0) {
-            list.unshift(receivedNumber)
+    if (gamestate == 0) {
+        if (receivedNumber < 100) {
+            if (list.indexOf(receivedNumber) < 0) {
+                list.unshift(receivedNumber)
+            }
         }
     }
+    radio.sendNumber(0)
     basic.showLeds(`
         . . . . .
         . . . . .
@@ -28,10 +30,13 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.B, function () {
     gamestate = 1
-    picked = list[randint(0, list.length - 1)]
+    indexPicked = randint(0, list.length - 1)
+    picked = list[indexPicked]
+    list.removeAt(indexPicked)
     radio.sendNumber(200 + picked)
 })
 let picked = 0
+let indexPicked = 0
 let gamestate = 0
 let list: number[] = []
 radio.setGroup(4)
