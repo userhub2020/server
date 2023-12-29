@@ -7,7 +7,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         }
     }
     radio.sendNumber(receivedNumber)
-    led.plot(receivedNumber % 5, receivedNumber / 5)
+    led.plot((receivedNumber - 1) % 5, (receivedNumber - 1) / 5)
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 4; index++) {
