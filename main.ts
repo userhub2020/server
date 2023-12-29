@@ -1,4 +1,5 @@
 radio.onReceivedNumber(function (receivedNumber) {
+    radio.sendNumber(receivedNumber)
     if (gamestate == 0) {
         if (receivedNumber < 100) {
             if (list.indexOf(receivedNumber) < 0) {
@@ -7,7 +8,6 @@ radio.onReceivedNumber(function (receivedNumber) {
             }
         }
     }
-    radio.sendNumber(receivedNumber)
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 4; index++) {
