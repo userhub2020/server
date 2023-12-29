@@ -1,11 +1,4 @@
 radio.onReceivedNumber(function (receivedNumber) {
-    basic.showLeds(`
-        # . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `)
     if (gamestate == 0) {
         if (receivedNumber < 100) {
             if (list.indexOf(receivedNumber) < 0) {
@@ -14,19 +7,14 @@ radio.onReceivedNumber(function (receivedNumber) {
         }
     }
     radio.sendNumber(receivedNumber)
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . #
-        `)
+    basic.showNumber(list.length)
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 4; index++) {
         radio.sendNumber(index + 101)
     }
     gamestate = 0
+    list = []
 })
 input.onButtonPressed(Button.B, function () {
     gamestate = 1
