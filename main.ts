@@ -13,7 +13,7 @@ radio.onReceivedNumber(function (receivedNumber) {
             }
         }
     }
-    radio.sendNumber(0)
+    radio.sendNumber(receivedNumber)
     basic.showLeds(`
         . . . . .
         . . . . .
