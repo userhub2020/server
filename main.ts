@@ -15,6 +15,7 @@ input.onButtonPressed(Button.A, function () {
     }
     gamestate = 0
     list = []
+    basic.showNumber(list.length)
 })
 input.onButtonPressed(Button.B, function () {
     gamestate = 1
@@ -22,6 +23,7 @@ input.onButtonPressed(Button.B, function () {
     picked = list[indexPicked]
     list.removeAt(indexPicked)
     radio.sendNumber(200 + picked)
+    basic.showNumber(list.length)
 })
 let picked = 0
 let indexPicked = 0
