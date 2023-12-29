@@ -7,7 +7,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         }
     }
     radio.sendNumber(receivedNumber)
-    basic.showNumber(list.length)
+    led.plot(receivedNumber % 5, receivedNumber / 5)
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 4; index++) {
@@ -15,7 +15,6 @@ input.onButtonPressed(Button.A, function () {
     }
     gamestate = 0
     list = []
-    basic.showNumber(list.length)
 })
 input.onButtonPressed(Button.B, function () {
     gamestate = 1
