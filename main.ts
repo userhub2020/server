@@ -17,7 +17,7 @@ radio.onReceivedNumber(function (receivedNumber) {
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 3; index++) {
-        radio.sendNumber(index + 101)
+        radio.sendNumber(index + 151)
     }
     gamestate = 0
     list = []
