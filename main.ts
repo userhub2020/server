@@ -8,6 +8,7 @@ radio.onReceivedNumber(function (receivedNumber) {
             }
         }
     }
+    radio.sendNumber(receivedNumber)
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 3; index++) {
