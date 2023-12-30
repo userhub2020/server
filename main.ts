@@ -16,19 +16,11 @@ radio.onReceivedNumber(function (receivedNumber) {
     }
 })
 input.onButtonPressed(Button.A, function () {
+    gamestate = 0
+    list = []
     for (let index = 0; index <= 3; index++) {
         radio.sendNumber(index + 151)
     }
-    gamestate = 0
-    list = []
-    list = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-    ]
     basic.showLeds(`
         . . . . .
         . . . . .
@@ -52,14 +44,6 @@ let gamestate = 0
 let list: number[] = []
 radio.setGroup(4)
 list = []
-list = [
-0,
-0,
-0,
-0,
-0,
-0
-]
 gamestate = 0
 basic.showLeds(`
     . . . . .
