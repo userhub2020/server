@@ -30,13 +30,6 @@ input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 3; index++) {
         radio.sendNumber(index + 101)
     }
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `)
 })
 input.onButtonPressed(Button.B, function () {
     if (gamestate == 0) {
