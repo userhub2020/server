@@ -1,22 +1,24 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (gamestate == 0) {
-        if (receivedNumber < 100) {
+        if (0 < receivedNumber && receivedNumber < 50) {
             if (list.indexOf(receivedNumber) < 0) {
                 list.unshift(receivedNumber)
                 led.plot((receivedNumber - 1) % 5, (receivedNumber - 1) / 5)
-                radio.sendNumber(receivedNumber)
             }
         }
-        if (100 < receivedNumber && receivedNumber < 200) {
+        if (100 < receivedNumber && receivedNumber < 150) {
             if (list.indexOf(receivedNumber - 100) >= 0) {
                 list.removeAt(list.indexOf(receivedNumber - 100))
                 led.unplot((receivedNumber - 101) % 5, (receivedNumber - 101) / 5)
-                radio.sendNumber(receivedNumber)
             }
         }
+        radio.sendNumber(receivedNumber + 50)
     }
 })
 input.onButtonPressed(Button.A, function () {
+    for (let index = 0; index <= 3; index++) {
+        radio.sendNumber(index + 101)
+    }
     gamestate = 0
     list = []
     list = [
@@ -27,9 +29,13 @@ input.onButtonPressed(Button.A, function () {
     0,
     0
     ]
-    for (let index = 0; index <= 3; index++) {
-        radio.sendNumber(index + 101)
-    }
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
 })
 input.onButtonPressed(Button.B, function () {
     if (gamestate == 0) {
