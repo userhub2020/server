@@ -4,6 +4,7 @@ radio.onReceivedNumber(function (receivedNumber) {
             if (list.indexOf(receivedNumber) < 0) {
                 list.unshift(receivedNumber)
                 led.plot((receivedNumber - 1) % 5, (receivedNumber - 1) / 5)
+                radio.sendNumber(receivedNumber + 50)
             }
         }
         if (100 < receivedNumber && receivedNumber < 150) {
@@ -11,9 +12,9 @@ radio.onReceivedNumber(function (receivedNumber) {
                 list.removeAt(list.indexOf(receivedNumber - 100))
                 led.unplot((receivedNumber - 101) % 5, (receivedNumber - 101) / 5)
             }
+            radio.sendNumber(receivedNumber + 50)
         }
     }
-    radio.sendNumber(receivedNumber + 50)
 })
 input.onButtonPressed(Button.A, function () {
     gamestate = 0
