@@ -12,8 +12,8 @@ radio.onReceivedNumber(function (receivedNumber) {
                 led.unplot((receivedNumber - 101) % 5, (receivedNumber - 101) / 5)
             }
         }
-        radio.sendNumber(receivedNumber + 50)
     }
+    radio.sendNumber(receivedNumber + 50)
 })
 input.onButtonPressed(Button.A, function () {
     gamestate = 0
