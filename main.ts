@@ -33,6 +33,7 @@ input.onButtonPressed(Button.B, function () {
     picked = list[indexPicked]
     list.removeAt(indexPicked)
     radio.sendNumber(200 + picked)
+    radio.sendNumber(400)
 })
 let picked = 0
 let indexPicked = 0
