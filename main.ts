@@ -32,6 +32,8 @@ let indexPicked = 0
 let list: number[] = []
 radio.setGroup(4)
 list = []
+basic.showString("S")
+basic.pause(500)
 basic.showLeds(`
     . . . . .
     . . . . .
