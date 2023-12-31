@@ -23,6 +23,7 @@ input.onButtonPressed(Button.A, function () {
         . . . . .
         . . . . .
         `)
+    sendNumber = -1
     radio.sendNumber(300)
 })
 input.onButtonPressed(Button.B, function () {
@@ -30,14 +31,20 @@ input.onButtonPressed(Button.B, function () {
     picked = list[indexPicked]
     list.removeAt(indexPicked)
     if (picked > 0) {
-        radio.sendNumber(200 + picked)
+        sendNumber = 200 + picked
+        for (let index = 0; index < 3; index++) {
+            radio.sendNumber(sendNumber)
+            basic.pause(200)
+        }
     }
 })
 let picked = 0
 let indexPicked = 0
+let sendNumber = 0
 let list: number[] = []
 radio.setGroup(4)
 list = []
+sendNumber = -1
 basic.showLeds(`
     . . . . .
     . . . . .
