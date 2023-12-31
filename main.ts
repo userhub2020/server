@@ -32,7 +32,7 @@ input.onButtonPressed(Button.B, function () {
     list.removeAt(indexPicked)
     if (picked > 0) {
         sendNumber = 200 + picked
-        for (let index = 0; index < 3; index++) {
+        for (let index = 0; index < 5; index++) {
             radio.sendNumber(sendNumber)
             basic.pause(200)
         }
