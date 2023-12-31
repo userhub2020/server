@@ -25,7 +25,9 @@ input.onButtonPressed(Button.B, function () {
     indexPicked = randint(0, list.length - 1)
     picked = list[indexPicked]
     list.removeAt(indexPicked)
-    radio.sendNumber(200 + picked)
+    if (picked > 0) {
+        radio.sendNumber(200 + picked)
+    }
 })
 let picked = 0
 let indexPicked = 0
