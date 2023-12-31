@@ -26,6 +26,7 @@ input.onButtonPressed(Button.A, function () {
         . . . . .
         . . . . .
         `)
+    radio.sendNumber(300)
 })
 input.onButtonPressed(Button.B, function () {
     indexPicked = randint(0, list.length - 1)
