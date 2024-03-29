@@ -156,6 +156,3 @@ basic.showLeds(`
 LCD1IN8.LCD_Init()
 LCD1IN8.LCD_ClearBuf()
 LCD1IN8.LCD_SetBL(10)
-basic.forever(function () {
-	
-})
