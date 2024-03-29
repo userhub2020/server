@@ -14,64 +14,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         }
     }
 })
-input.onButtonPressed(Button.A, function () {
-    if (evaluation) {
-        points[picked] = points[picked] + 1
-        basic.showLeds(`
-            . . . . .
-            . . # . .
-            . # # # .
-            . . # . .
-            . . . . .
-            `)
-        music.play(music.stringPlayable("C E G - - - - - ", 900), music.PlaybackMode.UntilDone)
-        evaluation = false
-    } else {
-        list = []
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
-        sendNumber = -1
-        radio.sendNumber(300)
-    }
-})
-input.onButtonPressed(Button.B, function () {
-    if (evaluation) {
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . # # # .
-            . . . . .
-            . . . . .
-            `)
-        music.play(music.stringPlayable("C - C - - - - - ", 600), music.PlaybackMode.UntilDone)
-        evaluation = false
-    } else {
-        indexPicked = randint(0, list.length - 1)
-        picked = list[indexPicked]
-        list.removeAt(indexPicked)
-        if (picked > 0) {
-            sendNumber = 200 + picked
-            for (let index = 0; index < 5; index++) {
-                radio.sendNumber(sendNumber)
-                basic.pause(200)
-            }
-            evaluation = true
-            basic.showLeds(`
-                . . # . .
-                . # . # .
-                # . . . #
-                . # . # .
-                . . # . .
-                `)
-        }
-    }
-})
-input.onLogoEvent(TouchButtonEvent.Touched, function () {
+input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
     basic.showLeds(`
         . . # . .
         . . # . .
@@ -113,11 +56,92 @@ input.onLogoEvent(TouchButtonEvent.Touched, function () {
         . . . . .
         `)
 })
-let xline = 0
-let yline = 0
+input.onButtonPressed(Button.A, function () {
+    if (evaluation) {
+        points[picked] = points[picked] + 1
+        basic.showLeds(`
+            . . . . .
+            . . # . .
+            . # # # .
+            . . # . .
+            . . . . .
+            `)
+        music.play(music.stringPlayable("C E G - - - - - ", 900), music.PlaybackMode.UntilDone)
+        evaluation = false
+    } else {
+        if (allmode) {
+            basic.showLeds(`
+                . # # # .
+                . # . # .
+                . # # # .
+                . # . # .
+                . # . # .
+                `)
+            sendNumber = -1
+            radio.sendNumber(400)
+        } else {
+            list = []
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
+            sendNumber = -1
+            radio.sendNumber(300)
+        }
+    }
+})
+input.onButtonPressed(Button.B, function () {
+    if (evaluation) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . # # # .
+            . . . . .
+            . . . . .
+            `)
+        music.play(music.stringPlayable("C - C - - - - - ", 600), music.PlaybackMode.UntilDone)
+        evaluation = false
+    } else {
+        indexPicked = randint(0, list.length - 1)
+        if (allmode) {
+            picked = list[indexPicked]
+            basic.showLeds(`
+                . # # # .
+                . # . # .
+                . # # # .
+                . # . # .
+                . # . # .
+                `)
+        } else {
+            picked = list[indexPicked]
+            list.removeAt(indexPicked)
+        }
+        if (picked > 0) {
+            sendNumber = 200 + picked
+            for (let index = 0; index < 5; index++) {
+                radio.sendNumber(sendNumber)
+                basic.pause(200)
+            }
+            evaluation = true
+            basic.showLeds(`
+                . . # . .
+                . # . # .
+                # . . . #
+                . # . # .
+                . . # . .
+                `)
+        }
+    }
+})
 let indexPicked = 0
 let picked = 0
+let xline = 0
+let yline = 0
 let sendNumber = 0
+let allmode = false
 let evaluation = false
 let points: number[] = []
 let list: number[] = []
@@ -158,6 +182,18 @@ points = [
 0
 ]
 evaluation = false
+if (input.buttonIsPressed(Button.A)) {
+    allmode = true
+    basic.showLeds(`
+        . # # # .
+        . # . # .
+        . # # # .
+        . # . # .
+        . # . # .
+        `)
+} else {
+    allmode = false
+}
 sendNumber = -1
 basic.showLeds(`
     . . . . .
