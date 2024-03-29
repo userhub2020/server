@@ -71,6 +71,37 @@ input.onButtonPressed(Button.B, function () {
         }
     }
 })
+input.onLogoEvent(TouchButtonEvent.Touched, function () {
+    music.play(music.tonePlayable(262, music.beat(BeatFraction.Sixteenth)), music.PlaybackMode.UntilDone)
+    yline = 0
+    xline = 0
+    LCD1IN8.LCD_ClearBuf()
+    for (let index = 0; index <= points.length - 2; index++) {
+        xline = 0
+        if (index > 9 && index < 20) {
+            xline = 50
+        }
+        if (index >= 20 && index < 29) {
+            xline = 100
+        }
+        LCD1IN8.DisNumber(
+        xline,
+        yline % 100,
+        index + 1,
+        0
+        )
+        LCD1IN8.DisNumber(
+        xline + 25,
+        yline % 100,
+        points[index + 1],
+        0
+        )
+        yline += 10
+    }
+    LCD1IN8.LCD_Display()
+})
+let xline = 0
+let yline = 0
 let indexPicked = 0
 let picked = 0
 let sendNumber = 0
@@ -80,6 +111,27 @@ let list: number[] = []
 radio.setGroup(4)
 list = []
 points = [
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
 0,
 0,
 0,
@@ -100,6 +152,9 @@ basic.showLeds(`
     . . . . .
     . . . . .
     `)
+LCD1IN8.LCD_Init()
+LCD1IN8.LCD_ClearBuf()
+LCD1IN8.LCD_SetBL(10)
 basic.forever(function () {
 	
 })

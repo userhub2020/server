@@ -4,7 +4,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "LCD1in8": "github:waveshare/PXT-WSLCD1in8#134289e495cd63679567767551acb92e81df1a3e"
     },
     "files": [
         "main.blocks",
