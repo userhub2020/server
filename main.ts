@@ -16,6 +16,7 @@ radio.onReceivedNumber(function (receivedNumber) {
 })
 input.onButtonPressed(Button.A, function () {
     if (evaluation) {
+        points[picked] = points[picked] + 1
         basic.showLeds(`
             . . . . .
             . . # . .
@@ -23,6 +24,7 @@ input.onButtonPressed(Button.A, function () {
             . . # . .
             . . . . .
             `)
+        music.play(music.stringPlayable("C E G - - - - - ", 900), music.PlaybackMode.UntilDone)
         evaluation = false
     } else {
         list = []
@@ -46,6 +48,7 @@ input.onButtonPressed(Button.B, function () {
             . . . . .
             . . . . .
             `)
+        music.play(music.stringPlayable("C - C - - - - - ", 600), music.PlaybackMode.UntilDone)
         evaluation = false
     } else {
         indexPicked = randint(0, list.length - 1)
@@ -68,13 +71,26 @@ input.onButtonPressed(Button.B, function () {
         }
     }
 })
-let picked = 0
 let indexPicked = 0
+let picked = 0
 let sendNumber = 0
 let evaluation = false
+let points: number[] = []
 let list: number[] = []
 radio.setGroup(4)
 list = []
+points = [
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0
+]
 evaluation = false
 sendNumber = -1
 basic.showLeds(`
