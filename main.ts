@@ -25,13 +25,6 @@ input.onButtonPressed(Button.A, function () {
             . . . . .
             `)
         music.play(music.stringPlayable("C E G - - - - - ", 900), music.PlaybackMode.UntilDone)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
         evaluation = false
     } else {
         list = []
@@ -56,13 +49,6 @@ input.onButtonPressed(Button.B, function () {
             . . . . .
             `)
         music.play(music.stringPlayable("C - C - - - - - ", 600), music.PlaybackMode.UntilDone)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
         evaluation = false
     } else {
         indexPicked = randint(0, list.length - 1)
