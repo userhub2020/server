@@ -15,35 +15,67 @@ radio.onReceivedNumber(function (receivedNumber) {
     }
 })
 input.onButtonPressed(Button.A, function () {
-    list = []
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `)
-    sendNumber = -1
-    radio.sendNumber(300)
+    if (evaluation) {
+        basic.showLeds(`
+            . . . . .
+            . . # . .
+            . # # # .
+            . . # . .
+            . . . . .
+            `)
+        evaluation = false
+    } else {
+        list = []
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            `)
+        sendNumber = -1
+        radio.sendNumber(300)
+    }
 })
 input.onButtonPressed(Button.B, function () {
-    indexPicked = randint(0, list.length - 1)
-    picked = list[indexPicked]
-    list.removeAt(indexPicked)
-    if (picked > 0) {
-        sendNumber = 200 + picked
-        for (let index = 0; index < 5; index++) {
-            radio.sendNumber(sendNumber)
-            basic.pause(200)
+    if (evaluation) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . # # # .
+            . . . . .
+            . . . . .
+            `)
+        evaluation = false
+    } else {
+        indexPicked = randint(0, list.length - 1)
+        picked = list[indexPicked]
+        list.removeAt(indexPicked)
+        if (picked > 0) {
+            sendNumber = 200 + picked
+            for (let index = 0; index < 5; index++) {
+                radio.sendNumber(sendNumber)
+                basic.pause(200)
+            }
+            evaluation = true
+            basic.showLeds(`
+                . . # . .
+                . # . # .
+                # . . . #
+                . # . # .
+                . . # . .
+                `)
         }
     }
 })
 let picked = 0
 let indexPicked = 0
 let sendNumber = 0
+let evaluation = false
 let list: number[] = []
 radio.setGroup(4)
 list = []
+evaluation = false
 sendNumber = -1
 basic.showLeds(`
     . . . . .
