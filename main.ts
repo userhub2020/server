@@ -76,12 +76,12 @@ input.onLogoEvent(TouchButtonEvent.Touched, function () {
     yline = 0
     xline = 0
     LCD1IN8.LCD_ClearBuf()
-    for (let index = 0; index <= points.length - 2; index++) {
+    for (let index = 0; index <= points.length - 3; index++) {
         xline = 0
         if (index > 9 && index < 20) {
             xline = 50
         }
-        if (index >= 20 && index < 29) {
+        if (index >= 20 && index < 30) {
             xline = 100
         }
         LCD1IN8.DisNumber(
