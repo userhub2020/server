@@ -25,6 +25,13 @@ input.onButtonPressed(Button.A, function () {
             . . . . .
             `)
         music.play(music.stringPlayable("C E G - - - - - ", 900), music.PlaybackMode.UntilDone)
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            `)
         evaluation = false
     } else {
         list = []
@@ -49,6 +56,13 @@ input.onButtonPressed(Button.B, function () {
             . . . . .
             `)
         music.play(music.stringPlayable("C - C - - - - - ", 600), music.PlaybackMode.UntilDone)
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            `)
         evaluation = false
     } else {
         indexPicked = randint(0, list.length - 1)
@@ -72,7 +86,13 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 input.onLogoEvent(TouchButtonEvent.Touched, function () {
-    music.play(music.tonePlayable(262, music.beat(BeatFraction.Sixteenth)), music.PlaybackMode.UntilDone)
+    basic.showLeds(`
+        . . # . .
+        . . # . .
+        . . # . .
+        . # # # .
+        . . # . .
+        `)
     yline = 0
     xline = 0
     LCD1IN8.LCD_ClearBuf()
@@ -99,6 +119,13 @@ input.onLogoEvent(TouchButtonEvent.Touched, function () {
         yline += 10
     }
     LCD1IN8.LCD_Display()
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
 })
 let xline = 0
 let yline = 0
